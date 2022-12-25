@@ -1,0 +1,42 @@
+{% extends "main_layout.html" %}
+{% block title%} {{ title }} {% endblock %}
+
+{% block content %}
+
+<!-- ======= Services Section ======= -->
+<section id="services" class="services" style="background-image: url(/static/img/hero-bg.png);">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-title">
+      <h2>{{title}}</h2>
+      <p class="text-dark"></p>
+    </div>
+
+    <div class="row justify-content-center">
+
+      <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="400">
+        <div class="icon-box">
+          <div class="icon"><i class="bx bi-files"></i></div>
+          <h4><a href="{{url_for('auth.filepredict')}}">Identify the .txt File</a></h4>
+          <p class="text-dark">In this section, users can identify news article documents in the form of txt files.</p>
+        </div>
+      </div>
+
+      <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="400">
+        <div class="icon-box">
+          <div class="icon"><i class="bx bi-input-cursor-text"></i></div>
+          <h4><a href="{{url_for('auth.textpredict')}}">Text Identification</a></h4>
+          <p class="text-dark">In this section, users can identify news article documents through the input form.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mt-5">
+      <a href="{{ url_for('auth.home') }}"><i class="bi bi-arrow-left-circle"></i> Back to Home</a>
+    </div>
+
+  </div>
+</section><!-- End Services Section -->
+
+{% endblock %}

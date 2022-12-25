@@ -1,0 +1,75 @@
+{% extends "main_layout.html" %}
+{% block title%} {{ title }} {% endblock %}
+
+{% block content %}
+
+<!-- ======= Services Section ======= -->
+<section id="predict" class="predict" style="background-image: url(/static/img/hero-bg.png);">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>{{title}}</h2>
+        </div>
+
+        <div class="row justify-content-center">
+
+            <div class="col-xl-4">
+                <h3>Prediction</h3>
+                <div class="card shadow border-end-0 border-bottom-0 border-top-0 border-3 border-primary">
+                    <div class="card-body">
+                        <form class="g-3" action="" method="POST" enctype="multipart/form-data">
+                            {{ form.hidden_tag() }}
+                            <div class="mb-3">
+                                {{ form.files.label(class="form-label text-dark") }}
+
+                                {% if form.files.errors %}
+                                    {{ form.files(class="form-control is-invalid") }}
+                                    {% for error in form.files.errors %}
+                                        <div class="invalid-feedback">
+                                            <span>{{ error }}</span>
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    {{ form.files(class="form-control") }}
+                                {% endif %}
+                                
+                            </div>
+                            {{ form.submit(class="btn btn-outline-primary")}}
+                        </form>
+                    </div>
+                </div>
+                <div class="mt-5">
+                    <a href="{{ url_for('auth.identification') }}"><i class="bi bi-arrow-left-circle"></i> Back to Previous Page</a>
+                </div>
+            </div>
+
+            <div class="col-xl-8">
+                <h3>Prediction Results</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Article</th>
+                            <th scope="col">Class</th>
+                            <th scope="col">Class Predict</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in range(predict['predict']|length) %}
+                        <tr>
+                            <th scope="row">{{ loop.index }}</th>
+                            <td>{{ predict['article'][i] }}</td>
+                            <td>{{ predict['class'][i] }}</td>
+                            <td class="{{ 'text-danger' if predict['predict'][i] != predict['class'][i] else 'text-dark'}}">{{ predict['predict'][i] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                  </table>
+            </div>
+
+        </div>
+
+    </div>
+</section><!-- End Services Section -->
+
+{% endblock %}
